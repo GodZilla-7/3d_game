@@ -209,7 +209,7 @@ function animate() {
     const enemy = new Cube(1, 1, Math.random()*2, 0xff0000);
     enemy.mesh.material = material;
     enemy.velocity.set(-0.005,-0.01, 0);
-    enemy.setPosition(10, 0, (Math.random()-0.5)*5);
+    enemy.setPosition(10, 0, (Math.random()-0.5)*8);
     scene.add(enemy.mesh);
     enemy.mesh.castShadow = true;
     enemy.xAcceleration = true;
