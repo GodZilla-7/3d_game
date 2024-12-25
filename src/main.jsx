@@ -1,6 +1,14 @@
 import "./index.css";
 import * as THREE from "three";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+// Load HDRI environment map
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/sunflowers_puresky_1k.hdr', function(texture) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+});
 
 alert("use WASD to move and space to jump");
 class Cube {
@@ -139,7 +147,7 @@ const enemies = [];
 
 camera.position.z = 5;
 const canvas = document.querySelector("#canvas");
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 window.addEventListener("resize", () => {
@@ -206,7 +214,7 @@ function animate() {
 
 
 
-    const enemy = new Cube(1, 1, Math.random()*2, 0xff0000);
+    const enemy = new Cube(1, 1, Math.random()*2 + 0.5, 0xff0000);
     enemy.mesh.material = material;
     enemy.velocity.set(-0.005,-0.01, 0);
     enemy.setPosition(10, 0, (Math.random()-0.5)*8);
@@ -226,6 +234,7 @@ cube.update(ground);
       
     window.cancelAnimationFrame(animateID);
       alert("Game Over");
+      location.reload();
     }
   });
   controls.update();
