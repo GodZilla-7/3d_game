@@ -123,7 +123,7 @@ const material = new THREE.MeshStandardMaterial({
   roughness: 1.0,
 });
 let loader=new THREE.TextureLoader();
-let color=loader.load('/image.png');
+let color=loader.load('/image.jpg');
 
 
 
@@ -262,3 +262,4 @@ scene.add(light);
 // Add ambient light
 const ambientLight = new THREE.AmbientLight(0x404040, 5);
 scene.add(ambientLight);
+
